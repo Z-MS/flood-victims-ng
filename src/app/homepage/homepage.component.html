@@ -1,0 +1,26 @@
+<section>
+    <div id='hero' class='overlay'>
+        <div id='title'>
+          <h1>Swift Relief Foundation</h1>
+          <p id="subtitle">Maiduguri Flood Victims Data Capture</p>
+          <div class='button-links'>
+            <span id="stats-link-button" class='button-link'><a href="#stats-section">View the Statistics</a></span>
+            <span id="project-link-button" class='button-link'><a routerLink to="/about">Learn About the Project</a></span>
+          </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <main>
+        <section id='stats-section'>
+            <h2 class='section-title'>Statistics</h2>
+                @if(displacedDataLoading) {
+                    <p>Calculating...</p>
+                }
+                <div id='data-container' class='container'>
+                    <p>STat cards coming soon</p>
+                </div>
+        </section>
+    </main>
+</div>

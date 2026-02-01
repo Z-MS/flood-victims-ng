@@ -1,0 +1,131 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #98AB69;
+    color: white;
+    text-align: center;
+}
+
+#header-logo-container {
+    margin: 0.15rem 0 0.15rem 1.5em; 
+}
+
+.nav-toggle, .close {
+    display: none;
+}
+
+#header-nav {
+    width: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0.35rem;
+    padding-bottom: 0.25rem;
+}
+
+.nav-list {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0.85rem 0 0.75rem 0;
+}
+
+.nav-item {
+  margin-right: 1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: white;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-link:visited {
+    color: white;
+}
+
+.nav-link:hover, .nav-link[aria-current="page"] {
+    opacity: 0.65;
+}
+
+
+#signout-button {
+    border-width: 0;
+    border-radius: 1rem;
+    padding: 0.25em 0.5em;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #98AB69;
+}
+
+#signout-button:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    #header-nav {
+        padding-top: 2em;
+        padding-bottom: 2rem;
+    }
+
+    .nav-list {
+        margin: 0;
+        position: fixed;
+        inset: 0 0 0 30%;
+        z-index: 1000;
+        flex-direction: column;
+        padding: 10rem 0 0 2em;
+        background-color: #98AB69;
+        transform: translateX(100%);
+        transition: transform 350ms ease-out;
+    }
+
+    .nav-list[data-visible="true"] {
+        transform: translateX(0%);
+    }
+
+    .nav-item {
+        text-align: left;
+        font-size: 1.05rem;
+    }
+
+    .nav-toggle {
+        display: block;
+        cursor: pointer;
+        border: 0;
+        width: 3em;
+        height: 3em;
+        padding-top: 0em;
+        border-radius: 50%;
+        background-color: #6c7b46;
+        color: white;
+        transition: opacity 250ms ease;    
+        position: absolute;
+        top: 0.75rem;
+        right: 1.5rem;
+        z-index: 9999;
+    }
+    
+    .nav-toggle[aria-expanded="true"] > .hamburger {
+        display: none;
+    }
+
+    .nav-toggle[aria-expanded="true"] > .close {
+        display: inline-block;
+        padding-top: 3px;
+    }
+
+    .nav-toggle:focus,
+    .nav-toggle:hover {
+        opacity: .75;
+    }  
+
+    #signout-button {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,119 @@
+/* Hero section */
+
+#hero {
+  background-image: url('/Flood.jpeg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+#title {
+  padding-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+}
+
+#title > h1, #subtitle {
+  background-color: #98ab69c4;
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  margin: 0.25em 0.25em 0.25em 0.25em;
+}
+
+#subtitle {
+  font-size: 3ch;
+  font-weight: 600;
+}
+
+.section-title {
+  margin-top: 0;
+  padding-top: 1rem;
+  font-size: 2.5rem;
+  color: rgb(223, 168, 97);
+  text-align: center;
+}
+
+/* Stats section */
+
+#stats-section {
+  background-color: white;
+}
+
+/* Buttons and links */
+
+.button-links {
+  display: flex;
+  gap: 1rem;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+}
+
+.button-link {
+  padding: 0.5em;
+  border-radius: 1rem;
+  text-transform: uppercase;
+}
+
+#project-link-button {
+  background-color: #98ab69;
+}
+
+#project-link-button:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+#project-link-button > a {
+  color: #ffffff;
+}
+
+#stats-link-button {
+  background-color: #ffffff;
+}
+
+#stats-link-button:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+#stats-link-button > a {
+  color: #6f7c4c;;
+}
+
+#data-container {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  place-content: center;
+}
+
+@media (max-width: 600px) {
+  #data-container { 
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: none;
+  }
+
+  #title > h1 {
+    font-size: 3ch;
+  }
+
+  #subtitle {
+    font-size: 2ch;
+  }
+
+  .button-links {
+    gap: 0.5rem;
+    flex-direction: column;
+    padding-top: 2.5rem;
+  }
+
+  #stats-link-button > a, #project-link-button > a {
+    font-size: 0.75rem;
+  }
+}
