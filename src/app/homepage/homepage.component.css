@@ -117,3 +117,9 @@
     font-size: 0.75rem;
   }
 }
+
+#loading-text {
+    text-align: center;
+    font-weight: 600;
+    color: grey;
+}

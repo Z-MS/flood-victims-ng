@@ -15,12 +15,26 @@
     <main>
         <section id='stats-section'>
             <h2 class='section-title'>Statistics</h2>
-                @if(displacedDataLoading) {
-                    <p>Calculating...</p>
+                
+                @if(displacedPersonsService.displacedDataLoading$ | async ) {
+                    <p id="loading-text">Calculating...</p>
                 }
-                <div id='data-container' class='container'>
-                    <p>STat cards coming soon</p>
-                </div>
+
+                @let stats = displacedPersonsService.stats$ | async;
+                @if(stats) {
+                    <div id='data-container' class='container'>
+                    <stat-card [title]="'Total Number of Displaced Persons'" [stats]="stats['totalDisplacedCount']"/>
+                      <stat-card [title]="'Children'" [stats]="stats['numberOfChildren']"/>
+                      <stat-card [title]="'Women and girls'" [stats]="stats['totalFemalesCount']">
+                    </stat-card>
+                    <stat-card [title]="'Widows'" [stats]="stats['numberOfWidows']">
+                    </stat-card>
+                    <stat-card [title]="'Divorcees'" [stats]="stats['numberOfDivorcees']">
+                    </stat-card>
+                </div> 
+                }   
+                
+                
         </section>
     </main>
 </div>
