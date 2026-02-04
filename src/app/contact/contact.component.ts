@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   template: `
     <div class="container">
       <section id="contact">
-        <h2 className='section-title'>Contact us</h2>
+        <h2 class='section-title'>Contact us</h2>
         <p>Office Address: N1 Circular Road Off Shehu Bukar Street, Old GRA Maiduguri</p>
         <p>Phone numbers: 08165500018, 08030640193</p>
         <ul>

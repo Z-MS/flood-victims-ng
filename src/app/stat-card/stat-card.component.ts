@@ -5,9 +5,9 @@ import { Component, input } from "@angular/core";
     imports: [],
     template: `
         <div class="container">
-            <div className="stat-card">
-                <p className="stat-title">{{title()}}</p>
-                <p className="number">{{stats()}}</p>
+            <div class="stat-card">
+                <p class="stat-title">{{title()}}</p>
+                <p class="number">{{stats()}}</p>
                 <div>
                     <ng-content/>
                 </div>

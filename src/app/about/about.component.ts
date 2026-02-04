@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   template:  `
     <div class="container">
         <section id="about-section">
-            <h2 className='section-title'>About the Project</h2>
+            <h2 class='section-title'>About the Project</h2>
             <p>This is a data collection project for the 2024 Maiduguri flood victims. The project is sponsored by Swift Relief Foundation.</p>
         </section>
     </div>
