@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'navbar',
-    imports: [RouterLink],
-    styleUrl: './navbar.component.css',
-    template: `
+	selector: 'navbar',
+	imports: [RouterLink, AsyncPipe],
+	styleUrl: './navbar.component.css',
+	template: `
         <header>
             <button (onclick)="toggleNavbar()" class="nav-toggle" aria-label="open navigation" aria-controls="nav-list" aria-expanded="false">
                 <span class="hamburger">
@@ -29,18 +31,16 @@ import { RouterLink } from '@angular/router';
               <li id='about' class='nav-item'><a class='nav-link' routerLink="/about">About</a></li>
               <li id='contact' class='nav-item'><a class='nav-link' routerLink="/contact">Contact</a></li>
               
-              @if(authStateLoading) {
+              @if(authService.userLoading()) {
                 <li class='nav-item'>Checking login status...</li>
-              }
-              
-              @if(!authStateLoading && !isUserSignedIn) {   
-                <li id='signin' class='nav-item'><a class='nav-link' routerLink="/signin">Sign in</a></li>
-                <li id='signup' class='nav-item'><a class='nav-link' routerLink="/signup">Sign up</a></li>
-              }
-
-              @if(!authStateLoading && isUserSignedIn) {   
-                <li class='nav-item'><button id='signout-button' (click)="signOutUser()">Sign out</button></li>
-              }
+							} @else {
+									@if(authService.user$ | async) {   
+										<li class='nav-item'><button id='signout-button' (click)="signOutUser()">Sign out</button></li>
+									} @else {
+										<li id='signin' class='nav-item'><a class='nav-link' routerLink="/signin">Sign in</a></li>
+										<li id='signup' class='nav-item'><a class='nav-link' routerLink="/signup">Sign up</a></li>
+									}
+							}
             </ul>       
           </nav>
         </header>
@@ -48,13 +48,24 @@ import { RouterLink } from '@angular/router';
 })
 
 export class Navbar {
-    authStateLoading: boolean = false;
-    isUserSignedIn: boolean = false;
-    toggleNavbar() {
+	authService = inject(AuthService);
+	router = inject(Router);
 
-    }
+	ngOnInit(): void {
+		// check if user is logged in
+		this.authService.user$.subscribe({
+			next: () => {
+				this.authService.userLoading.set(false)
+			}
+		})
+	}
 
-    signOutUser() {
+	toggleNavbar() {
 
-    }
+	}
+
+	signOutUser() {
+		this.authService.logout();
+		this.router.navigateByUrl('/');
+	}
 }

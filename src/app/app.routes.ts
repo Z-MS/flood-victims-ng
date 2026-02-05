@@ -7,7 +7,7 @@ export const routes: Routes = [
         component: HomepageComponent
     },
     {
-        path: 'displaced-persons',
+        path: 'displaced',
         loadComponent: () => import('./displaced-persons/displaced-persons.component').then(m => m.DisplacedPersonsComponent)
     },
     {

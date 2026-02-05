@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 a {
@@ -30,9 +31,13 @@ label {
   text-align: left;
 }
 
-input[type="text, number"] {
+input {
   display: block;
   text-align: left;
+  margin-block-start: 0.5rem;
+  margin-block-end: 0.75rem;
+  width: 80%;
+  padding: 0.5rem;
 }
 
 .button, input[type="submit"] {
