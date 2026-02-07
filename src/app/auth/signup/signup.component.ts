@@ -36,4 +36,9 @@ export class SignupComponent {
       }
     })
   }
+
+  checkValidity(field: string): boolean {
+    let fieldControl = this.form.get(field);
+    return fieldControl?.hasError('required')! && (fieldControl?.touched || fieldControl?.dirty)!;
+  }
 }

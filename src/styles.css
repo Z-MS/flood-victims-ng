@@ -62,3 +62,14 @@ input {
 .danger__button {
   background-color: red;
 }
+
+.error-message {
+  color: red;
+  font-weight: 400;
+  font-size: small;
+}
+
+input.ng-invalid.ng-touched {
+  border: red 1px solid;
+  border-radius: 0.25rem;
+}

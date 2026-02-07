@@ -11,15 +11,19 @@
             </div>
             <div>
                 <label for="name">Full name</label>
-                <input type="text" placeholder="Your full name" formControlName="name">
+                <input id="name" type="text" placeholder="Your full name" formControlName="name"
+                [class.invalid]="checkValidity('name')"/>
+                @if(checkValidity('name')) {
+                    <span class="error-message">This field is required</span>
+                }
             </div>
             <div>
                 <label for="password">Password</label>
-                <input type="password" placeholder="Your password" formControlName="password">
+                <input id="password" type="password" placeholder="Your password" formControlName="password">
             </div>
             <div>
                 <label for="repeatPassword">Repeat password</label>
-                <input type="password" placeholder="Repeat your password" formControlName="repeatPassword">
+                <input id="repeatPassword" type="password" placeholder="Repeat your password" formControlName="repeatPassword">
             </div>
             <div>
                 <button class="button submit__button" type="submit">Submit</button>
