@@ -1,32 +1,46 @@
 <div class="container">
     <h2>Sign up</h2>
-    @if(errorMessage) {
-        <div class="error-message">{{ errorMessage }}</div>
-    }
+    <div class="error-panel">
+        @if(errorMessage) {
+            <p>An error occurred during sign up. Error message: <span class="error-message">{{errorMessage}}</span></p>
+        }
+    </div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form__container">
             <div>
-                <label for="email">Email</label>
-                <input type="email" placeholder="Your email" formControlName="email">
-            </div>
-            <div>
-                <label for="name">Full name</label>
-                <input id="name" type="text" placeholder="Your full name" formControlName="name"
-                [class.invalid]="checkValidity('name')"/>
-                @if(checkValidity('name')) {
-                    <span class="error-message">This field is required</span>
+                <label for="email">Email</label><span class="required">*</span>
+                <input id="email" type="email" placeholder="Your email" formControlName="email"  
+                [class.invalid]="checkValidity('email')"/>
+                @if(checkValidity('email')) {
+                    <span class="error-message">Enter a valid email address</span>
                 }
             </div>
             <div>
-                <label for="password">Password</label>
-                <input id="password" type="password" placeholder="Your password" formControlName="password">
+                <label for="name">Full name</label><span class="required">*</span>
+                <input id="name" type="text" placeholder="Your full name" formControlName="name"
+                [class.invalid]="checkValidity('name')"/>
+                @if(checkValidity('name')) {
+                    <span class="error-message">The name must be at least 3 characters</span>
+                }
             </div>
             <div>
-                <label for="repeatPassword">Repeat password</label>
-                <input id="repeatPassword" type="password" placeholder="Repeat your password" formControlName="repeatPassword">
+                <label for="password">Password</label><span class="required">*</span>
+                <input id="password" type="password" placeholder="Your password" formControlName="password"
+                [class.invalid]="checkValidity('password')"/>
+                @if(checkValidity('password')) {
+                    <span class="error-message">The password must be at least 8 characters long</span>
+                }
             </div>
             <div>
-                <button class="button submit__button" type="submit">Submit</button>
+                <label for="repeatPassword">Repeat password</label><span class="required">*</span>
+                <input id="repeatPassword" type="password" placeholder="Repeat your password" formControlName="repeatPassword"
+                [class.invalid]="checkValidity('repeatPassword')"/>
+                @if(checkValidity('repeatPassword')) {
+                    <span class="error-message">The passwords do not match</span>
+                }
+            </div>
+            <div>
+                <button [disabled]="form.invalid" class="button submit__button" type="submit">Submit</button>
             </div>
         </div>
     </form>

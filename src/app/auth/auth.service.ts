@@ -11,6 +11,7 @@ export class AuthService {
     user$ = user(this.firebaseAuth);
 
     userLoading = signal<boolean>(true);
+    isSubmitting = signal<boolean>(false);
 
     register(email: string, password: string, name: string): Observable<void> {
         const promise = createUserWithEmailAndPassword(this.firebaseAuth, email, password)

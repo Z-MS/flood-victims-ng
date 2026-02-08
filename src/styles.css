@@ -35,7 +35,7 @@ input {
   display: block;
   text-align: left;
   margin-block-start: 0.5rem;
-  margin-block-end: 0.75rem;
+  margin-block-end: 0.15rem;
   width: 80%;
   padding: 0.5rem;
 }
@@ -55,6 +55,15 @@ input {
   background-color: #4bd850;
 }
 
+.submit__button:hover {
+  background-color: #329135;
+  transform: translateY(-2px);
+}
+
+.submit__button:disabled {
+  opacity: 0.7;
+}
+
 #add__button {
   background-color: #a5c35a;
 }
@@ -64,7 +73,7 @@ input {
 }
 
 .error-message {
-  color: red;
+  color: #7e0606;
   font-weight: 400;
   font-size: small;
 }
@@ -72,4 +81,22 @@ input {
 input.ng-invalid.ng-touched {
   border: red 1px solid;
   border-radius: 0.25rem;
+}
+
+.required {
+  font-size: small;
+  color: #b90000;
+  margin-inline-start: 5px;
+}
+
+.error-panel {
+  background-color: #ffb3b3;
+  border: red 1px solid;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin-block-end: 1rem;
+}
+
+.error-panel p {
+  color: rgba(0, 0, 0, 0.8);
 }
