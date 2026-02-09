@@ -1,10 +1,10 @@
 <div class="container">
     <h2>Sign up</h2>
-    <div class="error-panel">
-        @if(errorMessage) {
+    @if(errorMessage) {
+        <div class="error-panel">
             <p>An error occurred during sign up. Error message: <span class="error-message">{{errorMessage}}</span></p>
-        }
-    </div>
+        </div>
+    }
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form__container">
             <div>
@@ -40,7 +40,14 @@
                 }
             </div>
             <div>
-                <button [disabled]="form.invalid" class="button submit__button" type="submit">Submit</button>
+                <button [disabled]="form.invalid  || authService.isSubmitting()" class="button submit__button" type="submit">
+                    @if(form.invalid || (form.valid && !authService.isSubmitting())) {
+                        Submit
+                    }
+                    @else {
+                        Submitting...
+                    }      
+                </button>
             </div>
         </div>
     </form>

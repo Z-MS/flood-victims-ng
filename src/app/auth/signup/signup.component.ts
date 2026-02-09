@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
@@ -11,7 +12,6 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
   fb = inject(FormBuilder);
-  // http = inject(HttpClient);
   authService = inject(AuthService);
   router = inject(Router);
   
@@ -28,15 +28,16 @@ export class SignupComponent {
     this.authService.isSubmitting.set(true);
     const rawForm = this.form.getRawValue();
     this.authService.register(rawForm.email, rawForm.password, rawForm.name).
+    pipe(
+      finalize(() => {
+        this.authService.isSubmitting.set(false)
+    })).
     subscribe({
       next: () => {
         this.router.navigateByUrl('/signin');
       },
       error: (err) => {
         this.errorMessage = err.code;
-      },
-      complete: () => { 
-        this.authService.isSubmitting.set(false);
       }
     })
   }
