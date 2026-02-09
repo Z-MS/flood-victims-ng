@@ -42,9 +42,8 @@
             <div>
                 <button [disabled]="form.invalid  || authService.isSubmitting()" class="button submit__button" type="submit">
                     @if(form.invalid || (form.valid && !authService.isSubmitting())) {
-                        Submit
-                    }
-                    @else {
+                        Sign up
+                    } @else {
                         Submitting...
                     }      
                 </button>

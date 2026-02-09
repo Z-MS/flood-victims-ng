@@ -1,16 +1,36 @@
 <div class="container">
     <h2>Sign In</h2>
+    @if(errorMessage) {
+        <div class="error-panel">
+            <p>Invalid email or password.</p>
+        </div>
+    }
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div>
-            <label for="email">Email</label>
-            <input id="email" type="email" placeholder="Your email" formControlName="email">
-        </div>
-        <div>
-            <label for="password">Password</label>
-            <input id="password" type="password" placeholder="Your password" formControlName="password">
-        </div>
-        <div>
-            <button class="button submit__button" type="submit">Sign in</button>
+        <div class="form__container">
+            <div>
+                <label for="email">Email</label>
+                <input id="email" type="email" placeholder="Your email" formControlName="email"
+                [class.invalid]="checkValidity('email')">
+                @if(checkValidity('email')) {
+                    <span class="error-message">Enter a valid email address</span>
+                }
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input id="password" type="password" placeholder="Your password" formControlName="password"[class.invalid]="checkValidity('password')"/>
+                @if(checkValidity('password')) {
+                    <span class="error-message">The password must be at least 8 characters long</span>
+                }
+            </div>
+            <div>
+                <button [disabled]="form.invalid  || authService.isSubmitting()" class="button submit__button" type="submit">
+                    @if(form.invalid || (form.valid && !authService.isSubmitting())) {
+                        Sign in
+                    } @else {
+                        Submitting...
+                    }
+                </button>
+            </div>
         </div>
     </form>
 </div>

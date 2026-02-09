@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-signin',
@@ -22,8 +23,14 @@ export class SigninComponent {
   errorMessage: string | null = null;
 
   onSubmit(): void {
+    this.authService.isSubmitting.set(true);
     const rawForm = this.form.getRawValue();
     this.authService.login(rawForm.email, rawForm.password).
+    pipe(
+      finalize(() => {
+        this.authService.isSubmitting.set(false)
+      })
+    ).
     subscribe({
       next: () => {
         this.router.navigateByUrl('/displaced');
@@ -32,5 +39,21 @@ export class SigninComponent {
         this.errorMessage = err.code;
       }
     })
+  }
+
+  checkValidity(field: string): boolean {
+    let fieldControl = this.form.get(field);
+    let fieldError = null;
+    switch (field) {
+      case 'email':
+        fieldError = fieldControl?.hasError('email');
+        break;
+      case 'password':
+        fieldError = fieldControl?.hasError('minlength');
+        break;
+      default:
+        fieldError = fieldControl?.hasError('required');
+    }
+    return fieldError! && (fieldControl?.touched || fieldControl?.dirty)!;
   }
 }
