@@ -5,6 +5,11 @@
             <p>An error occurred during sign up. Error message: <span class="error-message">{{errorMessage}}</span></p>
         </div>
     }
+    @if(actionSuccessful) {
+        <div class="success-panel">
+            <p>Your account has been created successfully. Please check your email to verify your account.</p>
+        </div>
+    }
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form__container">
             <div>

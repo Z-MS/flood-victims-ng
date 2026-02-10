@@ -5,6 +5,7 @@ body {
 
 a {
     text-decoration: none;
+    color: #1c811c;
 }
 
 .container {
@@ -99,4 +100,12 @@ input.ng-invalid.ng-touched {
 
 .error-panel p {
   color: rgba(0, 0, 0, 0.8);
+}
+
+.success-panel {
+  background-color: #b3ffb3;
+  border: #4bd850 1px solid;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  margin-block-end: 1rem;
 }

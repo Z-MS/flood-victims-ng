@@ -23,6 +23,7 @@ export class SignupComponent {
   })
 
   errorMessage: string | null = null;
+  actionSuccessful: boolean = false;
 
   onSubmit(): void {
     this.authService.isSubmitting.set(true);
@@ -34,7 +35,7 @@ export class SignupComponent {
     })).
     subscribe({
       next: () => {
-        this.router.navigateByUrl('/signin');
+        this.actionSuccessful = true;
       },
       error: (err) => {
         this.errorMessage = err.code;
