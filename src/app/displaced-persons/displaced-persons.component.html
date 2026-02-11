@@ -1,3 +1,10 @@
 <div class="container">
-    <p>Displaced persons page is a Work in progress</p>
+    <h2>Displaced persons list</h2> 
+    <ag-grid-angular 
+        [loading]="displacedPersonsService.displacedDataLoading$ | async"
+        [columnDefs]="colDefs" [rowData]="displacedPersonsService.displacedPersons$ | async"
+        [pagination]="true"
+        [paginationPageSize]="10"
+        [paginationPageSizeSelector]="[10, 20, 50]"
+        style="height: 500px;"/>
 </div>
