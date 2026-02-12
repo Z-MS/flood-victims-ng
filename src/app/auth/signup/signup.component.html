@@ -15,32 +15,32 @@
             <div>
                 <label for="email">Email</label><span class="required">*</span>
                 <input id="email" type="email" placeholder="Your email" formControlName="email"  
-                [class.invalid]="checkValidity('email')"/>
-                @if(checkValidity('email')) {
+                [class.invalid]="validationService.checkValidity('email', form)"/>
+                @if(validationService.checkValidity('email', form)) {
                     <span class="error-message">Enter a valid email address</span>
                 }
             </div>
             <div>
                 <label for="name">Full name</label><span class="required">*</span>
                 <input id="name" type="text" placeholder="Your full name" formControlName="name"
-                [class.invalid]="checkValidity('name')"/>
-                @if(checkValidity('name')) {
+                [class.invalid]="validationService.checkValidity('name', form)"/>
+                @if(validationService.checkValidity('name', form)) {
                     <span class="error-message">The name must be at least 3 characters</span>
                 }
             </div>
             <div>
                 <label for="password">Password</label><span class="required">*</span>
                 <input id="password" type="password" placeholder="Your password" formControlName="password"
-                [class.invalid]="checkValidity('password')"/>
-                @if(checkValidity('password')) {
+                [class.invalid]="validationService.checkValidity('password', form)"/>
+                @if(validationService.checkValidity('password', form)) {
                     <span class="error-message">The password must be at least 8 characters long</span>
                 }
             </div>
             <div>
                 <label for="repeatPassword">Repeat password</label><span class="required">*</span>
                 <input id="repeatPassword" type="password" placeholder="Repeat your password" formControlName="repeatPassword"
-                [class.invalid]="checkValidity('repeatPassword')"/>
-                @if(checkValidity('repeatPassword')) {
+                [class.invalid]="validationService.checkValidity('repeatPassword', form)"/>
+                @if(validationService.checkValidity('repeatPassword', form)) {
                     <span class="error-message">The passwords do not match</span>
                 }
             </div>

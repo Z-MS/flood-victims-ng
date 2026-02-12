@@ -3,6 +3,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
+import { ValidationService } from '../validation.service';
 
 @Component({
   selector: 'app-signup',
@@ -14,6 +15,7 @@ export class SignupComponent {
   fb = inject(FormBuilder);
   authService = inject(AuthService);
   router = inject(Router);
+  validationService = inject(ValidationService);
   
   form = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
@@ -41,27 +43,5 @@ export class SignupComponent {
         this.errorMessage = err.code;
       }
     })
-  }
-
-  checkValidity(field: string): boolean {
-    let fieldControl = this.form.get(field);
-    let fieldError = null;
-    switch (field) {
-      case 'email':
-        fieldError = fieldControl?.hasError('email');
-        break;
-      case 'name':
-        fieldError = fieldControl?.hasError('minlength');
-        break;
-      case 'password':
-        fieldError = fieldControl?.hasError('minlength');
-        break;
-      case 'repeatPassword':
-        fieldError = fieldControl?.value !== this.form.get('password')?.value;
-        break;
-      default:
-        fieldError = fieldControl?.hasError('required');
-    }
-    return fieldError! && (fieldControl?.touched || fieldControl?.dirty)!;
   }
 }

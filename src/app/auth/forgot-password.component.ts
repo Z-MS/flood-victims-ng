@@ -2,6 +2,7 @@ import { Component, inject } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { AuthService } from "./auth.service";
 import { finalize } from "rxjs";
+import { ValidationService } from "./validation.service";
 
 @Component({
     imports: [ReactiveFormsModule],
@@ -23,8 +24,8 @@ import { finalize } from "rxjs";
                 <div>
                     <label for="email">Email</label>
                     <input id="email" type="email" placeholder="Your email" formControlName="email"
-                    [class.invalid]="checkValidity('email')">
-                    @if(checkValidity('email')) {
+                    [class.invalid]="validationService.checkValidity('email', form)">
+                    @if(validationService.checkValidity('email', form)) {
                         <span class="error-message">Enter a valid email address</span>
                     }
                 </div>
@@ -46,6 +47,8 @@ import { finalize } from "rxjs";
 export class ForgotPasswordComponent {
     fb = inject(FormBuilder);
     authService = inject(AuthService);
+    validationService = inject(ValidationService);
+    
     actionSuccessful: boolean = false;
     errorMessage: string | null = null;
 
@@ -69,11 +72,5 @@ export class ForgotPasswordComponent {
                 this.errorMessage = error.code;
             }
         })
-    }
-
-    checkValidity(field: string): boolean {
-        let fieldControl = this.form.get(field);
-        
-        return fieldControl?.hasError('email')! && (fieldControl?.touched || fieldControl?.dirty)!;
     }
 }

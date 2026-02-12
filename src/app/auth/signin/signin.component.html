@@ -10,15 +10,15 @@
             <div>
                 <label for="email">Email</label>
                 <input id="email" type="email" placeholder="Your email" formControlName="email"
-                [class.invalid]="checkValidity('email')">
-                @if(checkValidity('email')) {
+                [class.invalid]="validationService.checkValidity('email', form)">
+                @if(validationService.checkValidity('email', form)) {
                     <span class="error-message">Enter a valid email address</span>
                 }
             </div>
             <div>
                 <label for="password">Password</label>
-                <input id="password" type="password" placeholder="Your password" formControlName="password"[class.invalid]="checkValidity('password')"/>
-                @if(checkValidity('password')) {
+                <input id="password" type="password" placeholder="Your password" formControlName="password"[class.invalid]="validationService.checkValidity('password', form)"/>
+                @if(validationService.checkValidity('password', form)) {
                     <span class="error-message">The password must be at least 8 characters long</span>
                 }
             </div>
