@@ -1,1 +1,115 @@
-<p>add-displaced works!</p>
+<div>
+    @if(errorMessage) {
+        <div class="error-panel">
+            <p>An error occurred while submitting the form. Please check the inputs and try again.</p>
+        </div>
+    }
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form__container">
+            <div>
+                <label for="fullName">Full name</label>
+                <input id="fullName" type="text" placeholder="Name" formControlName="fullName"
+                [class.invalid]="validationService.checkValidity('fullName', form)">
+                @if(validationService.checkValidity('fullName', form)) {
+                    <span class="error-message">Name must not be less than 3 characters</span>
+                }
+            </div>
+            <div id="displaced-form-grid">
+                <div>
+                    <label for="gender">Gender</label>
+                    <select id="gender" formControlName="gender"
+                        [class.invalid]="validationService.checkValidity('gender', form)">
+                        <option value="" disabled selected>Select gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="age">Age</label>
+                    <input id="age" type="number" placeholder="Age" formControlName="age"
+                        [class.invalid]="validationService.checkValidity('age', form)">
+                    @if(validationService.checkValidity('age', form)) {
+                        <span class="error-message">Age must be between 0 and 150</span>
+                    }
+                </div>
+
+                <div>
+                    <label for="phone">Phone</label>
+                    <input id="phone" type="number" placeholder="Phone number" formControlName="phone"
+                        [class.invalid]="validationService.checkValidity('phone', form)">
+                    @if(validationService.checkValidity('phone', form)) {
+                        <span class="error-message">Phone number must not exceed 11 digits</span>
+                    }
+                </div>
+
+                <div>
+                    <label for="employmentStatus">Employment Status</label>
+                    <select id="employmentStatus" formControlName="employmentStatus"
+                        [class.invalid]="validationService.checkValidity('employmentStatus', form)">
+                        <option value="" disabled selected>Select employment status</option>
+                        <option value="Employed">Employed</option>
+                        <option value="Unemployed">Unemployed</option>
+                        <option value="Self-employed">Self-employed</option>
+                        <option value="Student">Student</option>
+                        <option value="Retired">Retired</option>
+                    </select>
+                    @if(validationService.checkValidity('employmentStatus', form)) {
+                        <span class="error-message">Employment status is required</span>
+                    }
+                </div>
+
+                <div>
+                    <label for="occupation">Occupation</label>
+                    <input id="occupation" type="text" placeholder="Occupation" formControlName="occupation"
+                        [class.invalid]="validationService.checkValidity('occupation', form)">
+                    @if(validationService.checkValidity('occupation', form)) {
+                        <span class="error-message">Occupation must be between 4 and 100 characters</span>
+                    }
+                </div>
+
+                <div>
+                    <label for="qualification">Qualification</label>
+                    <input id="qualification" type="text" placeholder="Highest qualification" formControlName="qualification"
+                        [class.invalid]="validationService.checkValidity('qualification', form)">
+                    @if(validationService.checkValidity('qualification', form)) {
+                        <span class="error-message">Qualification must be between 4 and 100 characters</span>
+                    }
+                </div>
+
+                <div>
+                    <label for="maritalStatus">Marital Status</label>
+                    <select id="maritalStatus" formControlName="maritalStatus"
+                        [class.invalid]="validationService.checkValidity('maritalStatus', form)">
+                        <option value="" disabled selected>Select marital status</option>
+                        <option value="Single">Single</option>
+                        <option value="Married">Married</option>
+                        <option value="Divorced">Divorced</option>
+                        <option value="Widowed">Widowed</option>
+                    </select>
+                    @if(validationService.checkValidity('maritalStatus', form)) {
+                        <span class="error-message">Marital status is required</span>
+                    }
+                </div>
+
+                <div>
+                    <label for="numberOfChildren">Number of Children</label>
+                    <input id="numberOfChildren" type="number" placeholder="Number of children" formControlName="numberOfChildren"
+                        [class.invalid]="validationService.checkValidity('numberOfChildren', form)">
+                    @if(validationService.checkValidity('numberOfChildren', form)) {
+                        <span class="error-message">Number of children cannot be negative</span>
+                    }
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center; margin-block-start: 1rem;">
+                <button [disabled]="form.invalid  || displacedPersonsService.isSubmitting()" class="button submit__button" type="submit" style="width: 35%;">
+                        @if(form.invalid || (form.valid && !displacedPersonsService.isSubmitting())) {
+                            Submit
+                        } @else {
+                            Submitting...
+                        }
+                    </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -6,6 +6,7 @@
 #add-displaced-dialog {
     width: 80%;
     border-width: 0;
+    border-radius: 0.75rem;
 }
 
 .control > .select {

@@ -65,12 +65,16 @@ input {
   opacity: 0.7;
 }
 
-#add__button {
+.add__button {
   background-color: #a5c35a;
 }
 
+.add__button:hover {
+  opacity: 0.8;
+}
+
 .danger__button {
-  background-color: red;
+  background-color: #ff4141;
 }
 
 .error-message {

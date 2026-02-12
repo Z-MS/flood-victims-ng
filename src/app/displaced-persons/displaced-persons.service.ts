@@ -1,7 +1,7 @@
-import { inject, Injectable } from "@angular/core";
+import { inject, Injectable, signal } from "@angular/core";
 import { DocumentData } from "@angular/fire/compat/firestore";
-import { collection, collectionData, Firestore } from "@angular/fire/firestore";
-import { BehaviorSubject, map, Observable, tap } from "rxjs";
+import { addDoc, collection, collectionData, Firestore } from "@angular/fire/firestore";
+import { BehaviorSubject, from, map, Observable, tap } from "rxjs";
 
 export interface Stats {
     totalDisplacedCount?: number,
@@ -27,6 +27,8 @@ export class DisplacedPersonsService {
         numberOfWidows: 0,
         numberOfDivorcees: 0,
     })
+
+    isSubmitting = signal<boolean>(false);
 
     constructor () {
         this.setupObservables();
@@ -72,5 +74,10 @@ export class DisplacedPersonsService {
         } catch(err) {
             console.error(err);
         }
+    }
+
+    addDisplacedPerson(data: DocumentData): Observable<void> {
+        const promise = addDoc(collection(this.firestore, 'displaced'), data).then(() => {});
+        return from(promise);
     }
 }
