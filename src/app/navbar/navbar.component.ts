@@ -22,7 +22,6 @@ import { AsyncPipe } from '@angular/common';
                 </span>
             </button>
             <div id="header-logo-container">
-                <a id="logo" routerLink="/"><img src="logo.jpg" width="30" height="30" alt='Swift relief foundation logo'/></a>
             </div>
             <nav id='header-nav'>
             <ul #sideNavbar data-visible="false" class='nav-list'>
